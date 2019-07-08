@@ -1,0 +1,47 @@
+﻿<div class="container">
+    <h1 class="h1-dashboard-title">People Search</h1>
+</div>
+
+<!--<form  ng-model="searchString" ng-controller="peopleSearchHomeCtrl" ng-submit="getPersonsBySearch(searchString)">-->
+<div class="container" ng-app="PeopleSearch" ng-controller="peopleSearchHomeCtrl">
+    <input type="text" id="search" ng-model="searchString" /> <button ng-click="getPersons()">Search</button>
+
+    <br />
+
+    <div ng-if="currentPersons.length > 0">
+        <div style="float:left; border: 1px solid blue; padding: 5px; height:600px; overflow:scroll">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Age</th>
+                        <th>Address</th>
+                        <th>Interest</th>
+                        <th>Picture</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="person in currentPersons">
+                        <td>{{person.FirstName}}</td>
+                        <td>{{person.LastName}}</td>
+                        <td>{{person.Age}}</td>
+                        <td>{{person.Address}}</td>
+                        <td>{{person.Interests}}</td>
+                        <td>
+                            <img style="height: 25px; width:25px;" src="{{appPath}}{{person.Picture}}" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row" ng-if="currentPersons && currentPersons.length == 0">
+        No results found.
+    </div>
+
+    <div class="row container" ng-if="personsLoading">
+        <h4>Loading persons...</h4>
+    </div>
+</div>
+<!--</form>-->
